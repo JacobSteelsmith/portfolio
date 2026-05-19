@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This document defines the requirements for a three-phase project to build and deploy a modern technical blog, AWS engineering portfolio, and AI-powered career assistant. Phase 1 focuses on rapidly converting 184 existing Markdown blog posts (2006–2012) into a live Astro-powered static site deployed via AWS Amplify. Phase 2 transforms the project into a portfolio-quality AWS engineering showcase with CloudFormation infrastructure, CI/CD pipelines, and operational polish. Phase 3 adds a RAG-based conversational agent powered by Amazon Bedrock that allows visitors to ask natural language questions about the site owner's career, skills, and projects. The target audience is hiring managers, recruiters, engineering leaders, and consulting clients evaluating cloud platform engineering and AI/ML expertise. Note: This site does NOT include a consulting or services page. No such page is planned or required at this time.
+This document defines the requirements for a three-phase project to build and deploy a modern technical blog, AWS engineering portfolio, and AI-powered career assistant hosted at `jacob.steelsmith.org`. Phase 1 focuses on rapidly converting 184 existing Markdown blog posts (2006–2012) into a live Astro-powered static site deployed via AWS Amplify. Phase 2 transforms the project into a portfolio-quality AWS engineering showcase with CloudFormation infrastructure, CI/CD pipelines, and operational polish. Phase 3 adds a RAG-based conversational agent powered by Amazon Bedrock that allows visitors to ask natural language questions about the site owner's career, skills, and projects. The target audience is hiring managers, recruiters, engineering leaders, and consulting clients evaluating cloud platform engineering and AI/ML expertise. Note: This site does NOT include a consulting or services page. No such page is planned or required at this time.
+
+**Infrastructure-as-Code Approach:** This project uses a hybrid IaC strategy. CloudFormation is the primary tool for AWS hosting infrastructure (S3, CloudFront, ACM, Route 53, OAC). Terraform is used for cross-platform resources that CloudFormation cannot manage (GitHub repository settings, branch protection rules, GitHub Actions environment secrets/variables) and for the AWS IAM OIDC identity provider setup where Terraform modules (`terraform-aws-oidc-github`) are more mature and well-tested. The DNS zone `steelsmith.org` is already hosted in Route 53.
 
 ## Glossary
 
@@ -21,6 +23,7 @@ This document defines the requirements for a three-phase project to build and de
 - **S3_Bucket**: The AWS S3 bucket storing the built static site assets
 - **OAC_Policy**: The Origin Access Control policy restricting S3 access to CloudFront only
 - **OIDC_Auth**: The OpenID Connect authentication mechanism used by GitHub Actions to assume AWS IAM roles without long-lived credentials
+- **Terraform_Config**: The Terraform configuration managing cross-platform resources (GitHub repository settings, branch protection, Actions secrets/variables) and the AWS IAM OIDC identity provider for GitHub Actions
 - **Ingestion_Pipeline**: The data pipeline that processes content sources (blog posts, resume, skills, project descriptions) into vector embeddings and stores them in the Vector_Database
 - **Vector_Database**: The vector store (Amazon OpenSearch Serverless or Amazon Knowledge Base) holding embedded content chunks for semantic retrieval
 - **RAG_Agent**: The Retrieval-Augmented Generation chat agent powered by Amazon Bedrock that answers visitor questions about career, skills, and projects
@@ -189,7 +192,7 @@ This document defines the requirements for a three-phase project to build and de
 1. WHEN a commit is pushed to the main branch on GitHub, THE Amplify_Deployment SHALL trigger an automatic build and deployment, and SHALL NOT trigger builds for pushes to other branches
 2. THE Amplify_Deployment SHALL build the Astro site using the configured build command and output directory, completing the build within 30 minutes
 3. THE Amplify_Deployment SHALL serve the built site over HTTPS with a valid SSL certificate
-4. THE Amplify_Deployment SHALL support custom domain configuration with automatic SSL certificate provisioning
+4. THE Amplify_Deployment SHALL serve the site at `jacob.steelsmith.org` with automatic SSL certificate provisioning, using the existing Route 53 hosted zone for `steelsmith.org`
 5. IF a build fails, THEN THE Amplify_Deployment SHALL retain the previous successful deployment and notify the site owner via the Amplify console build status and optionally via email notification
 6. WHEN a build and deployment completes successfully, THE Amplify_Deployment SHALL make the updated site accessible at the configured domain within 5 minutes of build completion
 
@@ -201,10 +204,10 @@ This document defines the requirements for a three-phase project to build and de
 
 1. THE CloudFormation_Stack SHALL provision an S3_Bucket configured for static website hosting with all public access blocked via S3 Block Public Access settings
 2. THE CloudFormation_Stack SHALL provision a CloudFront_Distribution with the S3_Bucket as origin using OAC_Policy, a default root object of `index.html`, and custom error responses that return `/index.html` with a 200 status for 403 and 404 origin errors
-3. THE CloudFormation_Stack SHALL provision an ACM certificate for the custom domain with DNS validation via Route 53
-4. THE CloudFormation_Stack SHALL provision Route 53 alias records (A and AAAA) pointing the custom domain to the CloudFront_Distribution
+3. THE CloudFormation_Stack SHALL provision an ACM certificate for `jacob.steelsmith.org` with DNS validation via the existing Route 53 hosted zone for `steelsmith.org`
+4. THE CloudFormation_Stack SHALL provision Route 53 alias records (A and AAAA) in the `steelsmith.org` hosted zone pointing `jacob.steelsmith.org` to the CloudFront_Distribution
 5. THE CloudFormation_Stack SHALL configure the OAC_Policy so that only the CloudFront_Distribution can read from the S3_Bucket
-6. THE CloudFormation_Stack SHALL accept the custom domain name as a stack parameter and export the S3_Bucket name, CloudFront_Distribution ID, and CloudFront_Distribution domain name as stack outputs
+6. THE CloudFormation_Stack SHALL accept the domain name (`jacob.steelsmith.org`) and the Route 53 hosted zone ID for `steelsmith.org` as stack parameters and export the S3_Bucket name, CloudFront_Distribution ID, and CloudFront_Distribution domain name as stack outputs
 7. THE CloudFormation_Stack SHALL be a valid CloudFormation template that passes `aws cloudformation validate-template` without errors
 
 ### Requirement 15: GitHub Actions CI/CD Pipeline (Phase 2)
@@ -327,3 +330,17 @@ This document defines the requirements for a three-phase project to build and de
 4. THE CloudFormation_Stack SHALL define all RAG infrastructure (API Gateway, Lambda, Bedrock permissions, Vector_Database) as infrastructure-as-code
 5. IF the rate limit is exceeded, THEN THE RAG_Agent SHALL return an HTTP 429 status response to the Chat_Widget with a message indicating the request was throttled and the visitor should wait before trying again
 6. THE RAG_Agent SHALL reject any input question exceeding 500 characters and return an error response indicating the question is too long
+
+### Requirement 24: Terraform-Managed Cross-Platform Resources (Phase 2)
+
+**User Story:** As a site owner, I want GitHub repository configuration, OIDC provider setup, and Actions secrets managed via Terraform so that cross-platform resources not supported by CloudFormation are version-controlled and reproducible.
+
+#### Acceptance Criteria
+
+1. THE Terraform_Config SHALL provision the AWS IAM OIDC identity provider for GitHub Actions using the `terraform-aws-oidc-github` module, establishing the trust relationship between GitHub and the AWS account
+2. THE Terraform_Config SHALL configure GitHub repository branch protection rules for the main branch, requiring at least one pull request review and a passing CI status check before merge
+3. THE Terraform_Config SHALL manage GitHub Actions environment secrets and variables needed for deployment (AWS account ID, role ARN, S3 bucket name, CloudFront distribution ID)
+4. THE Terraform_Config SHALL be stored in a dedicated directory within the repository (e.g., `infrastructure/terraform/`) and be executable independently of the CloudFormation_Stack
+5. THE Terraform_Config SHALL use a remote state backend (S3 + DynamoDB) to enable safe collaboration and state locking
+6. THE Terraform_Config SHALL output the IAM OIDC role ARN so that it can be referenced by the CI_CD_Pipeline and optionally passed as input to the CloudFormation_Stack
+7. IF the Terraform_Config is applied and the OIDC provider already exists, THEN THE Terraform_Config SHALL import or reference the existing provider without creating a duplicate
