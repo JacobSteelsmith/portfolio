@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Import the Markdown file and render it
+const architecturePage = await import('../content/pages/architecture.md');
+const { Content } = architecturePage;
+const { title, description } = architecturePage.frontmatter;
+---
+
+<BaseLayout title={`${title} - Jacob Steelsmith`} description={description}>
+  <article class="static-page">
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .static-page {
+    max-width: var(--max-content-width);
+  }
+
+  .static-page :global(h1) {
+    font-size: 2rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .static-page :global(h2) {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .static-page :global(h2:first-of-type) {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .static-page :global(h3) {
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .static-page :global(ul) {
+    padding-left: 1.5rem;
+  }
+
+  .static-page :global(ol) {
+    padding-left: 1.5rem;
+  }
+
+  .static-page :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .static-page :global(p) {
+    margin: 0 0 1rem;
+  }
+
+  .static-page :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+
+  .static-page :global(th),
+  .static-page :global(td) {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .static-page :global(th) {
+    background-color: #f8fafc;
+    font-weight: 600;
+  }
+
+  .static-page :global(pre) {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+
+  .static-page :global(code) {
+    font-size: 0.875rem;
+  }
+</style>

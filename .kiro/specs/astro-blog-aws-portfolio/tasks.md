@@ -176,8 +176,8 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - Verify HTTPS with valid SSL certificate
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 18.5_
 
-- [ ] 9. Implement CloudFormation infrastructure (Phase 2)
-  - [ ] 9.1 Create CloudFormation template for S3, CloudFront, ACM, Route 53, OAC
+- [x] 9. Implement CloudFormation infrastructure (Phase 2)
+  - [x] 9.1 Create CloudFormation template for S3, CloudFront, ACM, Route 53, OAC
     - Create `infrastructure/template.yaml` with parameters: DomainName, HostedZoneId, Environment
     - Define S3 bucket with BlockPublicAccess enabled
     - Define CloudFront OAC and bucket policy (CloudFront-only read access)
@@ -189,7 +189,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - Export outputs: BucketName, DistributionId, DistributionDomainName
     - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7, 18.1, 18.2, 18.4_
 
-  - [ ] 9.2 Create Terraform configuration for OIDC and GitHub resources
+  - [x] 9.2 Create Terraform configuration for OIDC and GitHub resources
     - Create `infrastructure/terraform/main.tf` with AWS and GitHub providers
     - Create `infrastructure/terraform/variables.tf` with github_repository (default: "JacobSteelsmith/portfolio"), s3_bucket_name, cloudfront_distribution_id, aws_account_id
     - Implement IAM OIDC provider using `terraform-aws-oidc-github` module
@@ -200,8 +200,8 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - Configure S3 + DynamoDB remote state backend
     - _Requirements: 24.1, 24.2, 24.3, 24.4, 24.5, 24.6, 24.7, 18.3_
 
-- [ ] 10. Implement GitHub Actions CI/CD pipeline (Phase 2)
-  - [ ] 10.1 Create GitHub Actions deploy workflow
+- [x] 10. Implement GitHub Actions CI/CD pipeline (Phase 2)
+  - [x] 10.1 Create GitHub Actions deploy workflow
     - Create `.github/workflows/deploy.yml` triggered on push to main and pull requests
     - Implement steps: checkout, setup Node.js, install deps, build Astro site
     - Configure AWS credentials via OIDC (assume IAM role)
@@ -211,8 +211,8 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - Report failure via GitHub Actions status on commit/PR
     - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5, 15.6_
 
-- [ ] 11. Create Architecture page (Phase 2 — MANDATORY)
-  - [ ] 11.1 Create Architecture page content and route
+- [x] 11. Create Architecture page (Phase 2 — MANDATORY)
+  - [x] 11.1 Create Architecture page content and route
     - Create `src/content/pages/architecture.md` with sections for each infrastructure component (S3, CloudFront, Route 53, ACM, OAC) explaining role and rationale
     - Include visual Mermaid diagram showing request flow and component relationships
     - Document CI/CD pipeline: build trigger, OIDC auth, S3 deploy, CloudFront invalidation
@@ -221,20 +221,20 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - Ensure Architecture page appears in main navigation
     - _Requirements: 16.1, 16.2, 16.3, 16.4, 16.5_
 
-- [ ] 12. Checkpoint - Phase 2 infrastructure verification
+- [x] 12. Checkpoint - Phase 2 infrastructure verification
   - Ensure all tests pass, ask the user if questions arise.
   - Verify CloudFormation template passes `aws cloudformation validate-template`
   - Verify Terraform plan runs without errors
   - Verify GitHub Actions workflow syntax is valid
 
 - [ ] 13. Implement Knowledge Base and ingestion pipeline (Phase 3)
-  - [ ] 13.1 Create Knowledge Base directory structure and content files
+  - [~] 13.1 Create Knowledge Base directory structure and content files
     - Create `knowledge-base/` directory with subdirectories: skills/, experience/, projects/, certifications/, code-samples/
     - Create initial content files with YAML metadata headers (source_type, category, language, project)
     - Include at least one code sample per claimed language/framework
     - _Requirements: 19.1, 19.2, 19.3, 19.4, 19.6_
 
-  - [ ] 13.2 Implement ingestion pipeline with content filtering
+  - [~] 13.2 Implement ingestion pipeline with content filtering
     - Create `infrastructure/ingestion/` directory with pipeline scripts
     - Implement chunking logic: 500–1000 tokens per chunk, 50–100 token overlap
     - Implement pre-ingestion content filter excluding chunks containing "National Testing Network", "NTN", "Ergometrics", or encryption key patterns
@@ -254,7 +254,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - **Validates: Requirements 20.10, 21.8**
 
 - [ ] 14. Implement RAG Agent Lambda and API (Phase 3)
-  - [ ] 14.1 Implement RAG Agent Lambda function
+  - [~] 14.1 Implement RAG Agent Lambda function
     - Create `infrastructure/lambda/rag-agent/index.ts` with handler
     - Implement semantic search: retrieve top 5 chunks from Vector Database
     - Implement relevance threshold filtering (discard below-threshold chunks)
@@ -278,7 +278,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - **Property 19: Chat input length validation**
     - **Validates: Requirements 22.2, 23.6**
 
-  - [ ] 14.5 Define RAG infrastructure in CloudFormation
+  - [~] 14.5 Define RAG infrastructure in CloudFormation
     - Add API Gateway endpoint (`POST /chat`) with rate limiting (100 req/min global, 10 req/min per IP)
     - Add Lambda function resource with Bedrock permissions
     - Add request validation (question ≤ 500 characters)
@@ -286,7 +286,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - _Requirements: 23.1, 23.2, 23.3, 23.4, 23.5, 23.6_
 
 - [ ] 15. Implement Chat Widget frontend (Phase 3)
-  - [ ] 15.1 Create Chat Widget component
+  - [~] 15.1 Create Chat Widget component
     - Create `src/components/ChatWidget.astro` with collapsible overlay and persistent trigger button
     - Implement client-side JavaScript for state management (open/closed, messages, loading, error)
     - Implement message input with 500-character limit and validation
@@ -303,7 +303,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - **Property 20: Chat session persistence**
     - **Validates: Requirements 22.7**
 
-- [ ] 16. Final checkpoint - Full integration verification
+- [~] 16. Final checkpoint - Full integration verification
   - Ensure all tests pass, ask the user if questions arise.
   - Verify full site build with all 184 posts succeeds
   - Verify all internal links resolve within build output
