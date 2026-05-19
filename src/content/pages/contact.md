@@ -9,7 +9,6 @@ I'm always happy to connect with fellow engineers, discuss cloud architecture, o
 
 ## Get in Touch
 
-- **Email** — [contact@jacob.steelsmith.org](mailto:contact@jacob.steelsmith.org)
 - **LinkedIn** — [linkedin.com/in/jacobsteelsmith](https://linkedin.com/in/jacobsteelsmith)
 - **GitHub** — [github.com/jacobsteelsmith](https://github.com/jacobsteelsmith)
 
