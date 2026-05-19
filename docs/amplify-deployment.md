@@ -22,7 +22,7 @@ This document covers the manual steps required to deploy the Astro blog via AWS 
 ### Build Configuration
 
 The `amplify.yml` in the repository root configures:
-- **Node.js 20** via nvm
+- **Node.js 22** via nvm (Astro requires >= 22.12.0)
 - **Install**: `npm ci` for deterministic dependency installation
 - **Build**: `npm run build` (runs `astro build`)
 - **Output**: `dist/` directory containing the static site
