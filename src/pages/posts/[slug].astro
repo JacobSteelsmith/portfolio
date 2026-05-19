@@ -1,0 +1,51 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+import { filterDrafts } from '../../utils/drafts';
+import { parseFilename } from '../../utils/content-loader';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  const posts = filterDrafts(allPosts);
+
+  return posts.map((post) => {
+    let slug: string;
+    if (post.data.slug) {
+      slug = post.data.slug;
+    } else {
+      const id = post.id.endsWith('.md') ? post.id : post.id + '.md';
+      const parsed = parseFilename(id);
+      slug = parsed ? parsed.slug : post.id;
+    }
+
+    return {
+      params: { slug },
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+let slug: string;
+if (post.data.slug) {
+  slug = post.data.slug;
+} else {
+  const id = post.id.endsWith('.md') ? post.id : post.id + '.md';
+  const parsed = parseFilename(id);
+  slug = parsed ? parsed.slug : post.id;
+}
+---
+
+<PostLayout
+  title={post.data.title}
+  date={post.data.date}
+  tags={post.data.tags}
+  description={post.data.description}
+  canonicalUrl={post.data.canonicalUrl}
+  slug={slug}
+  draft={post.data.draft}
+>
+  <Content />
+</PostLayout>
