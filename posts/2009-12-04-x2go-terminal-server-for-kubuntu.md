@@ -10,13 +10,13 @@ However, x2go is more than remote desktop software. Terminal server software pro
 I installed x2go server on Kubuntu 9.10 and it seems to work great aside from the lack of sound. The installation was the one of the easiest I have experienced, and the server requires no configuration. In fact, there are only two sets of settings in /etc/x2go/x2goserver.conf, one set for restricting users and another for restricting groups. As usual, rebooting was not required on either the server or client side.
 To [install](http://x2go.org/index.php?id=26), you'll need to add the repository, so use the following command
 to add the gpg keys for the repository.
-**$ gpg --keyserver wwwkeys.eu.pgp.net --recv-keys C509840B96F89133 && gpg -a --export C509840B96F89133 | sudo apt-key add -**
+`$ gpg --keyserver wwwkeys.eu.pgp.net --recv-keys C509840B96F89133 && gpg -a --export C509840B96F89133 | sudo apt-key add -`
 Then you'll need to add the repository
-**$ echo 'deb http://x2go.obviously-nice.de/deb/ lenny main' >> x2go.list && sudo mv x2go.list /etc/apt/sources.list.d/ && sudo apt-get update**
+`$ echo 'deb http://x2go.obviously-nice.de/deb/ lenny main' >> x2go.list && sudo mv x2go.list /etc/apt/sources.list.d/ && sudo apt-get update`
 Next, you'll need to install the x2go server and client.
-**$ sudo apt-get install x2goserver-home x2goclient**
+`$ sudo apt-get install x2goserver-home x2goclient`
 To keep things clean, I disabled the repository by using
-**$ sudo nano -w /etc/apt/sources.list.d/x2go.list && sudo apt-get update**
+`$ sudo nano -w /etc/apt/sources.list.d/x2go.list && sudo apt-get update`
 and adding a # in front of the deb line. Hit ctrl+o then enter to save then ctrl+x to exit. This is optional, but if you do this, remember to enable it to get updates for these packages.
 **Note:** The documentation states that if you're using KDE, you must install x2gokdebindings. I did not do this and it seems to work fine, although I may be missing additional functionality.
 You will then be able to install the client program on your client by adding the repository and just installing the x2go client. To connect using a Windows host, just download the Windows client.

@@ -4,8 +4,11 @@ date: 2009-01-18
 ---
 
 **Updated 05/24/2011: [Click here for the newest kiosk build based on Ubuntu 10.04.1](/content/ubuntu-kiosk-based-10041).**
+
 **Updated 04/08/2010: I have posted the new version of a [kiosk build based on Ubuntu 9.10 here](http://jacob.steelsmith.org/content/ubuntu-kiosk-based-910).**
+
 **Updated 03/16/2010: I am working on a kiosk build using 9.10. This should be posted soon.**
+
 One of my projects at my current employer was to use Ubuntu as a public kiosk after our Windows kiosks started prompting users for credit card information. After building the image up on a test machine, I used the excellent [remastersys](http://www.remastersys.klikit-linux.com/) project to build an image to use for future maintenance. I am making this image available here.
 This is a live CD that is currently built on Ubuntu 8.04.1 LTS and has most of the extra software removed, such as the games and unnecessary utilities, and is suitable for both wired and wireless kiosks. Please read on for notes and implementation.
 
@@ -47,14 +50,17 @@ Currently, the home page for the kiosk user is set to http://start.ubuntu.com/8.
 
 There are three items both wired and wireless implementations may want to change. Changing /etc/default/rcS and /etc/X11/xorg.conf can be done automatically using the setup script in itadmin's home directory. Just login as itadmin and run the command **sudo ./setup** . This will replace the two files /etc/default/rcS and /etc/X11/xorg.conf so it should only be run once during initial setup.
 **/etc/default/rcS**
+
 Changing the line that reads:
 UTC=yes
 to:
 UTC=no
 will keep Ubuntu from updating your hardware clock to UTC time. This is handy if you want the kiosks to turn on automatically using a RTC interrupt in the bios.
 **root's crontab**
+
 Using the command **sudo crontab -e** you can specify an automatic shutdown time for the machine. If you remove the pound sign from the beginning of the line, it will shutdown at 6:00 PM on weekdays.
 **/etc/X11/xorg.conf**
+
 It might be desirable to shut off virtual terminal switching. To do this, add this to the end of /etc/X11/xorg.conf.
 Section "ServerFlags"
 Option "DontVTSwitch" "true"
@@ -64,8 +70,10 @@ EndSection
 
 There are a few files that need to be edited.
 **/etc/network/if-pre-up.d/wireless-tools**
+
 This file is handy for setting some default settings for handling wireless networks. Just remove the pound sign from the beginning of the line and fill in the missing information.
 **/etc/network/interfaces**
+
 This file is used to setup the network. [Use this for specifying a static network configuration](http://www.cyberciti.biz/faq/setting-up-an-network-interfaces-file/). The wireless essid can be specified here too:
 wireless essid my-essid
 

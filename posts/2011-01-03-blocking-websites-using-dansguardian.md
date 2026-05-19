@@ -4,6 +4,7 @@ date: 2011-01-03
 ---
 
 **Implementation for kiosk.**
+
 1). Changed the homepage of the kiosk user to an allowed website by editing /home/kiosk/.mozilla/firefox//user.js
 2). Installed and configured dansguardian using the directions here:
 http://ubuntuforums.org/showthread.php?t=207008

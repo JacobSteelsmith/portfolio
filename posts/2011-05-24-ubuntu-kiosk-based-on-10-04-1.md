@@ -4,6 +4,7 @@ date: 2011-05-24
 ---
 
 **\*\*The latest update broke the kioskfox plugin\*\***
+
 See [here for instructions on fixing it](http://jacob.steelsmith.org/content/latest-firefox-update-incompatible-with-kioskfox-plugin-and-how-fix-it).
 The links for the new build based on Ubuntu 10.04.1 are below, along with the zip file containing the scripts. Contributions are welcome and please [contact me](/contact) or comment below with questions and complaints.
 This is live CD that can be installed to disk that is tailored for use as a public internet kiosk. There are 19 scripts included that perform various actions. This started several years ago after a need arose for secure and stable web kiosks around our college campus.

@@ -4,6 +4,7 @@ date: 2010-04-08
 ---
 
 **Updated 05/24/2011: [Click here for the newest kiosk build based on Ubuntu 10.04.1](/content/ubuntu-kiosk-based-10041).**
+
 Below is a the link for a kiosk build of Ubuntu based on 9.10. This build is a specific configuration of Ubuntu that will automatically login as a kiosk user. The kiosk user's xsession consists only of a single Firefox Window.
 Be sure to see the FAQ at the bottom.
 It has been designed so that the kiosk user can only use this Firefox window. I have taken every measure I could think of to disable the opening of other windows and closing of others. If the Firefox window is closed, the session ends and restarts gdm.
@@ -25,8 +26,11 @@ Thank you to my employer (Everett Community College) for allowing me to develop 
 FAQ
 ----
 **How do I change the home page for the kiosk user?**
+
 To change the home page, change the associated settings in /home/kiosk/.mozilla/firefox/obw0c5n2.default/user.js. The three settings are towards the top and are browser.startup.homepage, browser.startup.homepage\_override\_url, and browser.startup.homepage\_welcome\_url. I have made note to create a script that does this.
 **Can the wallpaper be changed?**
+
 For the itadmin account, yes. Not for the kiosk user. The kiosk user's xsession only loads metacity and firefox, not gnome.
 **How do I restrict web browsing to only one or a few websites?**
+
 See http://jacob.steelsmith.org/content/blocking-websites-using-dansguardian

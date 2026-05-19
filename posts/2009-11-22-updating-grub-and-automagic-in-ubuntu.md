@@ -28,5 +28,5 @@ and add your options after ro. Do **not** uncomment the line. So mine looked lik
 Again, the line **remains** commented.
 For security purposes, you can set **#alternative=false** to disable the rescue mode option. Be aware that physical access though is root access unless great pains are taken.
 There are many other, well documented options in this file as well. Once you have edited the file to your liking, use:
-**$ sudo update-grub**
+`$ sudo update-grub`
 which will update your menu.lst file. Easy as that.

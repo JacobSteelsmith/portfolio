@@ -21,10 +21,13 @@ I'm still working with Gnome and without KDE to try and do everything I can usin
 
 Ubuntu 8.04 has a couple of downfalls, but overall installs very easy, boots very quickly and is very compatible with my system.
 **Firefox 3 Beta 5**
+
 This is the default version of firefox that comes with Ubuntu. I'm not so sure this was a good idea, although the browser is very fast and mostly bug free, it still has it's issues and most add ons aren't compatible.
 **NVIDIA restricted drivers**
+
 The restricted driver manager said the nvidia\_new driver was installed but not in use. I checked the check box twice to try to enable it, to no avail. I eventually had to install it myself (it wasn't installed) and edit xorg.conf. I think the developers were trying to avoid the editing of files.
 **VMWare server is gone**
+
 The vmware-server package is gone. Apparently it is not compatible with the new kernel. The Ubuntu team is promoting KVM as a replacement and VirtualBox is also available.
 Well, KVM won't run with my processor, but VirtualBox does. However, my existing Windows 2000 virtual machine, created with VMWare will not boot.
 But overall, a very, very good distro with lots of improvements, both front end and back end. 

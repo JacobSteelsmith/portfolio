@@ -17,10 +17,10 @@ To fix this, I had to first:
 I was able to boot then, but not without errors. It may have been better to run an update from the live CD before copying, but I didn't think of that last night.
 It becomes obvious when you are missing binaries and you boot or try to run programs. To make things worse, the package managers seem to have no knowledge of the current state of the system. For example, I did not see an option to go through your packages and verify the binaries and installed files. That would be nice.
 In any case, to remedy single packages, use:
-**$ sudo apt-get --reinstall install $PACKAGE**
+`$ sudo apt-get --reinstall install $PACKAGE`
 where $PACKAGE is the name of the package you want to reinstall. If you try to use the regular install option, without the --reinstall switch, apt will tell you that the package is installed and at the latest version, even if you are missing files the package installed.
 But this still does not solve the version problem. To do that, I followed the instructions here:
 <http://ubuntuforums.org/showthread.php?t=735693&highlight=reinstall+all+packages+without+reinstalling+ubuntu>
 This will reinstall every package you have installed. I could/should have taken the time to improve the script to only reinstall packages that have files in /usr/bin but I didn't. You can use:
-**$ dpkg --listfiles $PACKAGE**
+`$ dpkg --listfiles $PACKAGE`
 to list the files a package installs. 
