@@ -47,6 +47,7 @@ function savePosition(id, posX, posY){
 ```
 
 The first thing you'll notice is the handler doesn't do anything. This is ok. The second thing you'll notice is the post string. You build it in a similar fashion to the get string in the url, except without the leading question mark.
+
 One of the most powerful features of using this object comes when you use the eval() function in JavaScript. This function takes a string and evaluates it as JavaScript statements. So in the page you query, you can simply write JavaScript code as output, setting variables or calling functions. For example, I called a ColdFusion page that sets the following variables pulled from a database, or determined by the logic in the page:
 
 ```

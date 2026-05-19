@@ -4,6 +4,7 @@ date: 2006-07-19
 ---
 
 I've been working with some aspects of the Ajax group of technologies lately. It sounds complicated and difficult to learn, but it really isn't. It uses the XMLHttpRequest object supported by many browsers. My current development requires I code for IE and Firefox, although it seems to be functional in Netscape.
+
 To use the XMLHttpRequest object, I put together two simple functions and put them in a file named SimpleAjax.js. Here are the functions:
 
 ```
@@ -43,7 +44,9 @@ function initSimpleAjax(){
 ```
 
 The function getXmlHttpObject() tries to instantiate the XMLHttpRequest object for several different browsers. The function initSimpleAjax simply calls getXmlHttp object and alerts the user if the browser does not implement this functionality.
+
 The XMLHttpRequest object makes requests to a server in the background using JavaScript, versus the browser making requests to the server while the user waits. These requests can be made asynchronously. That is, the script will continue processing after the request is made rather than waiting for a response. It seems as if this could be dangerous, but I haven't found it to be troublesome as of yet.
+
 Every request needs a handler. This is a function that handles the changes in state of the request object. Here is an example of one:
 
 ```
@@ -56,12 +59,17 @@ function stateChanged(){
 ```
 
 This function checks the object's ready state. If the readyState is equal to 4, or complete, the function will populate the space between the <span id="spanOut"> and </span> tags on the page with the response from the page queried. The response from the page queried is simply the html it produces.
+
 The different readyState codes are as follows:
 
 * 0 = uninitialized
+
 * 1 = loading
+
 * 2 = loaded
+
 * 3 = interactive
+
 * 4 = complete
 
 The object can query a server using either the **post** or the **get** method. Here is an example of a function that queries a page on a server (ColdFusion in this case) using the get method along with the handler that handles the call, which sets the text box that holds the journal entry name to the output produced by the ColdFusion page.

@@ -4,8 +4,11 @@ date: 2008-04-07
 ---
 
 A good way to get local disk information is using the fdisk command. Under Ubuntu, it goes a little something like this.
+
 $ sudo fdisk -l
+
 Don't forget the sudo, or you will only get the devices you plugged in (like USB hard drives).
+
 The output of the command looks like this:
 
 ```

@@ -4,9 +4,15 @@ date: 2008-09-26
 ---
 
 I pre-ordered the [T-Mobile G1](http://www.t-mobileg1.com/), the first phone offering Google's Android operating system, Wednesday, as soon as I had heard it was available.
+
 I had been holding out for a phone that ran Linux and was "open," but caved and replaced my [SDA](http://www.t-mobile.com/shop/Phones/Detail.aspx?device=4d94ce34-4a2b-4e0c-b97e-373968b1957f) with a [T-Mobile Wing](http://www.t-mobile.com/shop/Phones/Detail.aspx?device=acc8102d-4506-4eaa-bc2f-9c7b8ec1b1e0) after seeing that projects such as [openmoko](http://www.openmoko.com/) weren't going anywhere soon (although, much to my initial dismay, a phone can now be ordered from OpenMoko).
+
 The wing is an ok phone, but it is closed and really, somewhat unreliable. The Windows mobile platform is one of the most versatile and supported, but "isn't very good" according to popular, expert opinion. I totally agree.
+
 I had heard about [Android](http://www.android.com/) about a year ago and downloaded their SDK, although I haven't worked much with it since. Android is a mobile operating system developed by the [Open Handset Alliance](http://www.openhandsetalliance.com/). Android will be fully open sourced by Q4 2008.
+
 There are several reviews about the T-Mobile G1 that are complaining about some items. I, for one, am very excited about this phone, the open platform it runs on, as well as the ability to write and add applications at will. Whatever "features," such as Exchange support and recording video, the phone is lacking should be filled by developers around the world. And I am not personally concerned about a missing headphone jack or "too many ui options." This last complaint said the keyboard, touch screen and track ball were almost too much. I like options.
+
 Whatever people are whining about, I have no doubt that, overall, this phone will be a much better option for many people than what is out there now. If not in the initial release, certainly for subsequent releases. And, unlike my current phone, I should be able to upgrade the operating system as new versions are released.
+
 I have a feeling this phone will be the beginning of a shift to a more open platform using more open standards, which may explain the lack of Exchange support, and I welcome it.

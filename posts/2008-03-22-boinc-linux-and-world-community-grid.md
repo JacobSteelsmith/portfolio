@@ -4,13 +4,23 @@ date: 2008-03-22
 ---
 
 [BOINC](http://boinc.berkeley.edu/) is an open source program based at the [Space Sciences Laboratory](http://ssl.berkeley.edu/) at the University of California, Berkeley. BOINC is a software platform for Linux for volunteer computing and desktop Grid computing.
+
 Most people have heard of volunteer computing and desktop grid computing through projects like [SETI@home](http://setiathome.berkeley.edu/) and [World Community Grid](http://www.worldcommunitygrid.org/) whereby a user downloads project data from a central server, uses their computer's idle time to perform action on that data, then returns the results. Most projects track the results returned by users and/or teams. This allows the simultaneous use of thousands of computers around the world all working towards the same goal.
+
 BOINC is a platform that allows users to run several of these projects simultaneously. Using BOINC, you can contribute to multiple projects and manage your resources for each project. BOINC also allows an individual or organization to organize and submit a project for computation on the community grid.
+
 To install BOINC under Ubuntu or Kubuntu, type **sudo apt-get install boinc-client boinc-manager** at a command prompt or use a package manager to install those binaries.
+
 You can join a project in two ways. You can run **boincmgr** which will launch the graphical manager and start a wizard that will guide you through adding a project. Most of these projects require registration on their individual websites.
+
 You can also use boinc\_cmd which is the command line manager. Once you join a project, at least in the case of World Community Grid, you will get a BOINC account key. This was in the My Profile section of the World Community Grid website. To join a project, use the command **boinc\_cmd --project\_attach http://www.worldcommunitygrid.org/ key** where **key** is the key obtained from the website. You can check the status of the BOINC client using the command **boinc\_cmd --get\_state** to verify the client received the correct information from the project server. It took a minute but the remote machine I installed BOINC on showed my correct user name and had started computing.
+
 I haven't quite tested it, but I believe installing the packages via apt or a package manager installs an auto start script. There is a script labeled boinc-client in /etc/init.d/, which houses scripts to be run at startup. I don't like rebooting Linux, so I guess I'll see the next time I reboot.
+
 I did reboot my machine at work (due to a noisy power supply) and boinc auto started without any intervention.
+
 World Community Grid employs grid computing to process huge amounts of data for projects that benefit humanity. Currently, my machine is working on Human Proteome Folding research (Phase 2), but [there are many other projects at World Community Grid](http://www.worldcommunitygrid.org/projects_showcase/viewResearch.do).
+
 I was a participant in the SETI@home, the Search for Extraterrestrial Intelligence, which uses your computer to compute data received from telescopes to look for unnatural noise, which would possibly indicate the presence of extraterrestrial intelligence.
+
 I switched to World Community Grid for the humanity of it all, but that was using Windoze. Now with Linux and BOINC, I have the stable, more powerful platform to run both. 
