@@ -1,0 +1,13 @@
+---
+title: "What I can't stand about windows"
+date: 2008-10-10
+---
+
+It's some of the simple things, some of the items the developers obviously cut corners on that ruin my experience with Windows. It is also the lock down, the "hand holding," the obfuscation and hiding of system configuration and administration behind easy to use GUIs.
+Not that GUIs are bad, but few things are more frusturating when a GUI is the only method of configuration, and the developer of the GUI has decided that you, the administrator, does not need to change.
+For example, I administrate an identity management system at my nine to five (Novell's Identity Manager). A strange bug has cropped up that only rears it's ugly head when a user changes their password from Active Directory, only from the login prompt, and only when Active Directory informs the user they have x number of days left.
+It should be easy enough to fix this, but it is not. To fix this, I need to duplicate the situation and Active Directory does not let you set the pwdLastSet attribute to a specific date time, which triggers the "x number of days left" prompt. I cannot set it, but obviously, there is a function somewhere in the API that sets this to a value, so why can I not access it? And why should I pay for support for an operating system that has been paid for?
+I ran into more frustration when I was setting up [AWStats](http://awstats.sourceforge.net/) on a Windows server. It took about an hour to setup and configure AWStats and IIS. But I spent another hour just trying to setup a scheduled task to update the statistics, and I gave up before getting it finished. I had even accomplished the same thing on another server.
+The "log" for the scheduled task placed the most recent entry square in the middle of the log, with older entries above and below it. It contained useless information, such as "the task exited with status 0x0001" which means it didn't work. Nothing more, might as well be less.
+These are supposed to be the "creme of the crop," enterprise level operating systems, but they seem to be developed to be administered by almost anyone. This would explain why they are favored by corporations, but that makes for a dangerous combination with lots of downtime and lost data.
+If these tools were open source, along with the operating system's API, different tools and functions could be added and life would be good, but they are not. I have run into these issues before, and will again. I guess I will just chalk it up to TCO and breath a deep sigh of relief when I am once again at my shell. 

@@ -1,0 +1,14 @@
+---
+title: "My thoughts on the T-Mobile G1"
+date: 2009-01-17
+---
+
+I have owned the T-Mobile G1 since October. I had been looking for a replacement for the T-Mobile Wing for some time, and being a fan of open source and Linux, I was very excited to read about Android (even exploring Android development using their SDK), and even more excited to learn T-Mobile had the initial offering of an Android based cell phone.
+I pre-ordered the G1 as soon as I could. It wasn't just the fact the phone was open source, or that it ran Linux, although nearly limitless development potential and extreme stability were my number one and number two reasons. I was so tired of my Windows Mobile phone. The Wing was the best option for T-Mobile at the time I purchased it, so I put up with it. I simply had no choice. In fact I had purchased the phone on craigslist.org, from a Google employee, and I had asked him excitedly "when is the Google phone coming out?" The announcement came several months later.
+My Wing just wasn't a very good phone. It was slow (crippled for battery life), it crashed often or froze. There were many quirks, but it was a decent phone. I couldn't sink easily with my Linux desktop, so I didn't. The web browsing was crippled and very slow, and most of the web didn't work right. There were rarely updates. After all, money is made when a user upgrades, not updates.
+It did have many features, some my G1 does not have, although many of these features were poorly implemented, or didn't work correctly. Is a feature that does not work correctly really a feature?
+After using the G1 for several months, it is the best T-Mobile offering for my purposes, and if only for the fact it's open, and due to iTunes, better than the iPhone.
+The integration with Gmail and Google calendar are a God send for me. I don't need to worry about syncing anymore, less my files, which I can do by plugging the phone and copying and pasting. This did not work easily, if at all, with my Wing and Linux.
+The web browser is a fully functional browser. Most websites are fully functional and JavaScript is semi-functional. There are some annoyances although the speed and rendering are comparable to a slower desktop, even on the slower edge network.
+For me, the phone is great, and the free applications make it even better. The only challenge I have with this phone is it's short battery life, even when using it on the EDGE network with no GPS or WiFi. The phone does charge with a mini-usb cord with any computer, so this makes things easier. In fact, I typed nearly this entire post with the G1 before I stopped due to low batter life. The phone had been used moderately for the previous four or five hours and lasted the rest of the day.
+But I would rather have a shorter battery life than a crippled or slow phone, and, in my opinion, the G1 is the best phone T-Mobile offers.

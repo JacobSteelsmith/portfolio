@@ -1,0 +1,10 @@
+---
+title: "Immortal Software"
+date: 2006-03-20
+---
+
+While studying software development, most are exposed to the concept of the software life cycle. This business methodology describes the concept, design, implementaion, support and eventual "death" of the application. Yes, an application eventually will "die," a state in which developement and support will stop for this application.
+In discussing future projects with a business partner, I came to the realization that web-based applications have no life cycle. Of course, one must still move from the concept phase through the support phase, but the life cycle of the application is determined by the users and is not dependant on the underlying system, or other pieces of software.
+Once all the bugs are worked out and the feature set is in place, a web-based application can theoretically "live" for as long as it's being used. Not only that, but it seems as if the most profitable sites are those that don't charge their users.
+There are many more advantages to web-based applications. The only software the user needs to install is none! As far as I know, all operating systems come with a web browser. If the user's computer crashes or is even outright stolen, the user's data is still intact and there is no need for reinstallation of software or recovery of data. The user can use the application from around the world, without installing additional software. Piracy, in the web-based application world, is easily averted and the developer is relieved of most versioning nightmares as there is only one active code base for production. This eases support greatly. In fact, if the application is designed and documented well enough, the application does have the potential to become self-supporting, even to the lowest common denominator.
+Web-based applications have brought a whole new business model to the software world, a superior one for both the users and developers and profitable to the company. In a tough industry, web-based applications are a breath of fresh air.

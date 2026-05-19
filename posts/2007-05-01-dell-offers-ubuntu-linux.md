@@ -1,0 +1,11 @@
+---
+title: "Dell Offers Ubuntu Linux!"
+date: 2007-05-01
+---
+
+[C|Net News.com](http://news.com.com/Dell+picks+Ubuntu+for+Linux+PCs/2100-7344_3-6180419.html "Cnet News.com") is reporting today that Dell is now offering [Ubuntu Linux](http://www.ubuntu.com/ "Ubuntu") as an option for new computers. The article reports that Dell has attempted this before with little success. However, after actually listening to the consumers and realizing that Ubuntu has made great strides towards being a contender for the operating system of choice for the average consumer, Dell is giving it a try once again.
+"The market is ready," Silber said. "We think the combination of the timing, the technology and the partner are aligned to make it happen."
+"We think great strides have been made since 2001," Cook said. "Linux has evolved to a point where there is something available for consumers," though Linux PCs will appeal mostly to a Linux enthusiast market that's more limited than that for Windows Vista.
+There have been several reports that Vista is not taking off like Microsoft had hoped, all of which are refuted by the software giant. The quarterly earnings came out recently, showing 400 million in sales, much of which are attributed by the company to Vista sales. I have seen many people refusing to upgrade to Vista, taking the"if it ain't broke, don't fix it" mentality, of which I am a subscriber.
+However, because Ubuntu, and it's KDE equivalent [Kubuntu](http://www.kubuntu.org/ "Kubuntu"), are freely available, I would think any Linux enthusiast would have this skills to download and install it side by side with Windows. I can't help but think that Dell is preparing for a potential backlash when users of Vista discover the restrictions imposed on their computing and freedom to do what they wish with the operating system they paid a premium for.
+I am very happy that a major company is recognizing the accomplishments of the Ubuntu developers in building this highly stable and usable distribution.
