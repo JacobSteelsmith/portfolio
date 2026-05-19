@@ -171,7 +171,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
 - [ ] 8. Deploy Phase 1 via AWS Amplify
   - [ ] 8.1 Configure AWS Amplify hosting
     - Create `amplify.yml` build spec with Node.js setup, `npm ci`, `npm run build`, output directory `dist/`
-    - Connect GitHub repository main branch to Amplify
+    - Connect GitHub repository (`JacobSteelsmith/portfolio`) main branch to Amplify
     - Configure custom domain `jacob.steelsmith.org` using existing Route 53 hosted zone
     - Verify HTTPS with valid SSL certificate
     - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 18.5_
@@ -191,7 +191,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
 
   - [ ] 9.2 Create Terraform configuration for OIDC and GitHub resources
     - Create `infrastructure/terraform/main.tf` with AWS and GitHub providers
-    - Create `infrastructure/terraform/variables.tf` with github_repository, s3_bucket_name, cloudfront_distribution_id, aws_account_id
+    - Create `infrastructure/terraform/variables.tf` with github_repository (default: "JacobSteelsmith/portfolio"), s3_bucket_name, cloudfront_distribution_id, aws_account_id
     - Implement IAM OIDC provider using `terraform-aws-oidc-github` module
     - Define IAM role with least-privilege policy (s3:PutObject, s3:DeleteObject, s3:ListBucket, cloudfront:CreateInvalidation)
     - Configure GitHub branch protection (require PR review + passing CI)

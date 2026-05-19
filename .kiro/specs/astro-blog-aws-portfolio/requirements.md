@@ -16,7 +16,7 @@ This document defines the requirements for a three-phase project to build and de
 - **SEO_Engine**: The subsystem responsible for generating meta tags, Open Graph data, and structured data for each page
 - **Draft_Filter**: The subsystem that excludes posts marked as drafts from production builds
 - **Pagination_Engine**: The subsystem that splits blog listing pages into paginated sets
-- **Amplify_Deployment**: The AWS Amplify Hosting service configuration that builds and deploys the site from GitHub
+- **Amplify_Deployment**: The AWS Amplify Hosting service configuration that builds and deploys the site from the GitHub repository (`JacobSteelsmith/portfolio`)
 - **CloudFormation_Stack**: The AWS CloudFormation infrastructure-as-code template defining S3, CloudFront, ACM, Route 53, and OAC resources
 - **CI_CD_Pipeline**: The GitHub Actions workflow responsible for building, testing, and deploying the site
 - **CloudFront_Distribution**: The AWS CloudFront CDN distribution serving the static site
@@ -185,7 +185,7 @@ This document defines the requirements for a three-phase project to build and de
 
 ### Requirement 13: AWS Amplify Deployment (Phase 1)
 
-**User Story:** As a site owner, I want the site deployed via AWS Amplify connected to GitHub so that every push to the main branch triggers an automatic build and deployment.
+**User Story:** As a site owner, I want the site deployed via AWS Amplify connected to the GitHub repository (`JacobSteelsmith/portfolio`) so that every push to the main branch triggers an automatic build and deployment.
 
 #### Acceptance Criteria
 
@@ -267,7 +267,7 @@ This document defines the requirements for a three-phase project to build and de
 
 1. THE Knowledge_Base SHALL consist of Markdown or JSON files stored in a dedicated directory within the repository, with each file containing a metadata header identifying its content category (skills, work experience, projects, certifications, or career narrative)
 2. THE Knowledge_Base SHALL include at least one code sample file per claimed language or framework, with each code sample file annotated with metadata specifying the programming language and the associated project or skill area
-3. THE Knowledge_Base SHALL be stored in the same GitHub repository as the blog content
+3. THE Knowledge_Base SHALL be stored in the same GitHub repository (`JacobSteelsmith/portfolio`) as the blog content
 4. THE Knowledge_Base SHALL include content from blog posts, the resume page, dedicated skills/project description files, and representative code samples, with each content source identifiable by a source-type metadata field
 5. WHEN a commit modifying files in the Knowledge_Base directory is pushed to the repository, THE Ingestion_Pipeline SHALL be manually triggerable via a CI workflow dispatch or CLI command to re-process the changed content
 6. THE Knowledge_Base SHALL organize files using a directory structure that separates content by category (skills, experience, projects, certifications, code-samples) so that the Ingestion_Pipeline can discover and classify content by path

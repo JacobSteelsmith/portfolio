@@ -15,7 +15,7 @@ This design covers a three-phase project to build a professional portfolio site 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
 | Static site generator | Astro | Content-first framework with native Markdown support, zero JS by default, excellent build performance |
-| Phase 1 hosting | AWS Amplify | Fastest path to production with GitHub integration, auto-SSL, custom domains |
+| Phase 1 hosting | AWS Amplify | Fastest path to production with GitHub integration (`JacobSteelsmith/portfolio`), auto-SSL, custom domains |
 | Phase 2 hosting | S3 + CloudFront via CloudFormation | Portfolio-quality IaC, full control, demonstrates AWS expertise |
 | IaC strategy | Hybrid: CloudFormation + Terraform | CloudFormation for AWS hosting (S3, CloudFront, ACM, Route 53, OAC); Terraform for cross-platform resources (GitHub config, OIDC provider) that CloudFormation cannot manage |
 | CI/CD auth | GitHub OIDC → IAM role | No stored secrets, short-lived credentials, AWS best practice |
@@ -369,6 +369,7 @@ output "oidc_role_arn" {
 variable "github_repository" {
   description = "GitHub repository in format owner/repo"
   type        = string
+  default     = "JacobSteelsmith/portfolio"
 }
 
 variable "s3_bucket_name" {
