@@ -1,0 +1,265 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { sortPosts, normalizeTag } from '../../utils/tags';
+import { filterDrafts } from '../../utils/drafts';
+import { paginate } from '../../utils/pagination';
+import { generateDescription } from '../../utils/content-loader';
+import type { Post } from '../../utils/tags';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  const publishedPosts = filterDrafts(allPosts) as Post[];
+  const sortedPosts = sortPosts(publishedPosts);
+
+  const pages = paginate(sortedPosts, { pageSize: 10, basePath: '/blog' });
+
+  return pages.map((page) => {
+    // For the first page, the param is undefined (matches /blog/)
+    // For subsequent pages, the param is the page number string (matches /blog/2/, /blog/3/, etc.)
+    const pageParam = page.currentPage === 1 ? undefined : String(page.currentPage);
+    return {
+      params: { page: pageParam },
+      props: { page },
+    };
+  });
+}
+
+interface Props {
+  page: {
+    items: Post[];
+    currentPage: number;
+    totalPages: number;
+    hasNext: boolean;
+    hasPrev: boolean;
+    path: string;
+  };
+}
+
+const { page } = Astro.props;
+
+function getPostSlug(post: Post): string {
+  // Use frontmatter slug if available, otherwise derive from filename (id)
+  if (post.data.slug) {
+    return post.data.slug;
+  }
+  // Remove date prefix (YYYY-MM-DD-) from the id
+  const match = post.id.match(/^\d{4}-\d{2}-\d{2}-(.+?)(?:\.md)?$/);
+  return match ? match[1] : post.id;
+}
+
+function getDescription(post: Post): string {
+  const desc = post.data.description || '';
+  if (desc.length <= 160) return desc;
+  const truncated = desc.slice(0, 160);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return lastSpace === -1 ? truncated : truncated.slice(0, lastSpace);
+}
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+
+const isDev = import.meta.env.DEV;
+---
+
+<BaseLayout
+  title={page.currentPage === 1 ? 'Blog' : `Blog - Page ${page.currentPage}`}
+  description="Browse all blog posts covering software development, web technologies, and technical topics."
+>
+  <h1>Blog</h1>
+
+  <ul class="post-list" role="list">
+    {page.items.map((post) => {
+      const slug = getPostSlug(post);
+      const description = getDescription(post);
+      const isoDate = post.data.date.toISOString().split('T')[0];
+      return (
+        <li class="post-entry">
+          {isDev && post.data.draft && (
+            <span class="draft-badge" role="status">Draft</span>
+          )}
+          <h2 class="post-title">
+            <a href={`/posts/${slug}`}>{post.data.title}</a>
+          </h2>
+          <div class="post-meta">
+            <time datetime={isoDate}>{formatDate(post.data.date)}</time>
+          </div>
+          {description && (
+            <p class="post-description">{description}</p>
+          )}
+          {post.data.tags.length > 0 && (
+            <ul class="post-tags" role="list" aria-label={`Tags for ${post.data.title}`}>
+              {post.data.tags.map((tag) => (
+                <li>
+                  <a href={`/tags/${normalizeTag(tag)}`}>{tag}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+
+  {page.totalPages > 1 && (
+    <nav class="pagination" aria-label="Blog pagination">
+      <div class="pagination-links">
+        {page.hasPrev && (
+          <a
+            href={page.currentPage === 2 ? '/blog' : `/blog/${page.currentPage - 1}`}
+            class="pagination-prev"
+            rel="prev"
+          >
+            &larr; Previous
+          </a>
+        )}
+        <span class="pagination-info">
+          Page {page.currentPage} of {page.totalPages}
+        </span>
+        {page.hasNext && (
+          <a
+            href={`/blog/${page.currentPage + 1}`}
+            class="pagination-next"
+            rel="next"
+          >
+            Next &rarr;
+          </a>
+        )}
+      </div>
+    </nav>
+  )}
+</BaseLayout>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+
+  .post-entry {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-entry:first-child {
+    padding-top: 0;
+  }
+
+  .post-entry:last-child {
+    border-bottom: none;
+  }
+
+  .draft-badge {
+    display: inline-block;
+    background-color: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #92400e;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-title {
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem;
+    line-height: 1.4;
+  }
+
+  .post-title a {
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .post-title a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+  }
+
+  .post-meta {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .post-description {
+    margin: 0.5rem 0;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0.75rem 0 0;
+    padding: 0;
+  }
+
+  .post-tags li a {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background-color: #f1f5f9;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: background-color 0.2s ease;
+  }
+
+  .post-tags li a:hover {
+    background-color: #e2e8f0;
+    color: var(--color-primary-hover);
+  }
+
+  .pagination {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .pagination-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .pagination-prev,
+  .pagination-next {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .pagination-prev:hover,
+  .pagination-next:hover {
+    background-color: #f1f5f9;
+    border-color: var(--color-primary);
+  }
+
+  .pagination-info {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .pagination-links {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,219 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { filterDrafts } from '../utils/drafts';
+import { sortPosts } from '../utils/tags';
+
+const allPosts = await getCollection('posts');
+const publishedPosts = filterDrafts(allPosts);
+const sortedPosts = sortPosts(publishedPosts);
+
+// Recent posts: up to 5 most recent
+const recentPosts = sortedPosts.slice(0, 5);
+
+// Featured posts: up to 5 posts with featured === true
+const featuredPosts = sortedPosts.filter((post) => post.data.featured).slice(0, 5);
+const hasFeatured = featuredPosts.length > 0;
+
+/**
+ * Derive the URL slug from a post's id.
+ * The id is the filename without .md extension (e.g., "2006-03-20-immortal-software").
+ * The slug strips the leading YYYY-MM-DD- date prefix.
+ */
+function getPostSlug(post: { id: string; data: { slug?: string } }): string {
+  if (post.data.slug) {
+    return post.data.slug;
+  }
+  // Strip the YYYY-MM-DD- prefix from the id
+  return post.id.replace(/^\d{4}-\d{2}-\d{2}-/, '');
+}
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Jacob Steelsmith - Cloud Platform Engineer"
+  description="Technical blog and portfolio of Jacob Steelsmith, covering cloud platform engineering, AWS modernization, serverless systems, and technical leadership."
+>
+  <section class="intro" aria-label="Professional introduction">
+    <h1>Jacob Steelsmith</h1>
+    <p class="tagline">Cloud Platform Engineer &amp; Technical Leader</p>
+    <p class="summary">
+      I specialize in cloud platform engineering, AWS modernization, serverless and distributed systems, and technical leadership. I help teams build scalable, resilient infrastructure and ship with confidence.
+    </p>
+    <nav class="intro-links" aria-label="Profile links">
+      <a href="/about">About</a>
+      <a href="/resume">Resume</a>
+      <a href="https://linkedin.com/in/jacobsteelsmith" rel="noopener noreferrer" target="_blank">LinkedIn</a>
+      <a href="https://github.com/jacobsteelsmith" rel="noopener noreferrer" target="_blank">GitHub</a>
+    </nav>
+  </section>
+
+  {hasFeatured && (
+    <section class="featured" aria-label="Featured posts">
+      <h2>Featured Posts</h2>
+      <ul class="post-list">
+        {featuredPosts.map((post) => (
+          <li class="post-item">
+            <a href={`/blog/${getPostSlug(post)}`} class="post-title">{post.data.title}</a>
+            <time datetime={post.data.date.toISOString().slice(0, 10)}>
+              {formatDate(post.data.date)}
+            </time>
+            {post.data.description && <p class="post-description">{post.data.description}</p>}
+            {post.data.tags.length > 0 && (
+              <ul class="tag-list" aria-label="Post tags">
+                {post.data.tags.map((tag) => (
+                  <li><a href={`/tags/${tag.toLowerCase()}`} class="tag">{tag}</a></li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="recent" aria-label="Recent posts">
+    <h2>Recent Posts</h2>
+    <ul class="post-list">
+      {recentPosts.map((post) => (
+        <li class="post-item">
+          <a href={`/blog/${getPostSlug(post)}`} class="post-title">{post.data.title}</a>
+          <time datetime={post.data.date.toISOString().slice(0, 10)}>
+            {formatDate(post.data.date)}
+          </time>
+          {post.data.description && <p class="post-description">{post.data.description}</p>}
+          {post.data.tags.length > 0 && (
+            <ul class="tag-list" aria-label="Post tags">
+              {post.data.tags.map((tag) => (
+                <li><a href={`/tags/${tag.toLowerCase()}`} class="tag">{tag}</a></li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .intro h1 {
+    margin: 0 0 0.25rem;
+    font-size: 2rem;
+  }
+
+  .tagline {
+    margin: 0 0 1rem;
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+  }
+
+  .summary {
+    margin: 0 0 1.5rem;
+    max-width: 60ch;
+  }
+
+  .intro-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .intro-links a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .intro-links a:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary-hover);
+  }
+
+  .featured,
+  .recent {
+    margin-bottom: 3rem;
+  }
+
+  .featured h2,
+  .recent h2 {
+    margin: 0 0 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-item {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .post-title {
+    display: block;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  time {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-description {
+    margin: 0 0 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+  }
+
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-size: 0.8125rem;
+    padding: 0.2rem 0.5rem;
+    background-color: #f1f5f9;
+    border-radius: 3px;
+    text-decoration: none;
+    color: var(--color-text-muted);
+  }
+
+  .tag:hover {
+    background-color: #e2e8f0;
+    color: var(--color-primary);
+  }
+</style>

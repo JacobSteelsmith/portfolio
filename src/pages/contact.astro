@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Import the Markdown file and render it
+const contactPage = await import('../content/pages/contact.md');
+const { Content } = contactPage;
+const { title, description } = contactPage.frontmatter;
+---
+
+<BaseLayout title={`${title} - Jacob Steelsmith`} description={description}>
+  <article class="static-page">
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .static-page {
+    max-width: var(--max-content-width);
+  }
+
+  .static-page :global(h1) {
+    font-size: 2rem;
+    margin: 0 0 1.5rem;
+  }
+
+  .static-page :global(h2) {
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .static-page :global(h2:first-of-type) {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .static-page :global(ul) {
+    padding-left: 1.5rem;
+    list-style: none;
+  }
+
+  .static-page :global(li) {
+    margin-bottom: 0.75rem;
+  }
+
+  .static-page :global(p) {
+    margin: 0 0 1rem;
+  }
+</style>

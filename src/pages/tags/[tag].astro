@@ -1,0 +1,157 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { normalizeTag, getAllTags, getPostsByTag, sortPosts } from '../../utils/tags.ts';
+import { filterDrafts } from '../../utils/drafts.ts';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts');
+  const publishedPosts = filterDrafts(allPosts);
+  const tagCounts = getAllTags(publishedPosts);
+
+  return Array.from(tagCounts.keys()).map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const allPosts = await getCollection('posts');
+const publishedPosts = filterDrafts(allPosts);
+const postsForTag = getPostsByTag(publishedPosts, tag);
+
+function getSlug(post: typeof publishedPosts[number]): string {
+  const filename = post.id;
+  const match = filename.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/);
+  if (match) {
+    return match[1];
+  }
+  // Fallback: use the id without extension
+  return filename.replace(/\.md$/, '');
+}
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title={`Posts tagged "${tag}" - Jacob Steelsmith`}
+  description={`All blog posts tagged with "${tag}" by Jacob Steelsmith.`}
+>
+  <h1>Posts tagged &ldquo;{tag}&rdquo;</h1>
+  <p class="post-count">{postsForTag.length} post{postsForTag.length !== 1 ? 's' : ''}</p>
+
+  <ul class="post-list">
+    {postsForTag.map((post) => (
+      <li class="post-entry">
+        <article>
+          <h2>
+            <a href={`/blog/${getSlug(post)}`}>{post.data.title}</a>
+          </h2>
+          <time datetime={post.data.date.toISOString().split('T')[0]}>
+            {formatDate(post.data.date)}
+          </time>
+          {post.data.description && (
+            <p class="description">{post.data.description}</p>
+          )}
+          {post.data.tags.length > 0 && (
+            <ul class="tag-list" aria-label="Tags">
+              {post.data.tags.map((t) => (
+                <li>
+                  <a href={`/tags/${normalizeTag(t)}`} class="tag">{t}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      </li>
+    ))}
+  </ul>
+
+  <nav aria-label="Tag navigation">
+    <a href="/tags">&larr; All tags</a>
+  </nav>
+</BaseLayout>
+
+<style>
+  .post-count {
+    color: var(--color-text-muted);
+    margin-top: -0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .post-entry {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .post-entry:last-child {
+    border-bottom: none;
+  }
+
+  .post-entry h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+  }
+
+  .post-entry h2 a {
+    text-decoration: none;
+  }
+
+  .post-entry h2 a:hover {
+    text-decoration: underline;
+  }
+
+  .post-entry time {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    margin: 0.5rem 0;
+    color: var(--color-text-muted);
+  }
+
+  .tag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    background-color: #f1f5f9;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    color: var(--color-primary);
+  }
+
+  .tag:hover {
+    background-color: #e2e8f0;
+  }
+
+  nav[aria-label="Tag navigation"] {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+</style>
