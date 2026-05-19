@@ -5,7 +5,6 @@ date: 2012-02-15
 
 I started up Visual Studio 2010 on my Windows 7 virtual machine to finally get some development done and was greeted with this error when opening a project I had recently worked on:
 
-![TFS error picture](/files/js/tfserror/tfserror1.png)
 > The solution appears to be under source control, but it's binding information cannot be found. Because it is not possible to recover this missing information automatically, the projects whose bindings are missing will be treated as not under source control.
 
 Another symptom of this problem can be seen when using Windows Explorer. The folders that should be under source control no longer have the little green icon in the corner, and there is no longer a Team Foundation Server menu.
@@ -20,11 +19,7 @@ To fix this, the first step is to close the solution. After the initial error yo
 
 Next, open the workspaces dialog using File -> Source Control -> Workspaces...
 
-![Workspaces dialog box snapshot](/files/js/tfserror/tfserror2.png)
-
 You will notice the Manage Workspaces dialog box contains one workspace with your new machine name. Click on Edit... to view the details of this workspace.
-
-![Workspace details snapshot](/files/js/tfserror/tfserror3.png)
 
 In my case there were no working folders. There should be an entry for every project you have under source control. I should have at least 10 here.
 

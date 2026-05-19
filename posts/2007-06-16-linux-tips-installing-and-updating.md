@@ -5,11 +5,11 @@ date: 2007-06-16
 
 One of the reasons the average person complains about Linux is the perceived or rumored difficulty in installing software, or performing updates. It is true that it is somewhat difficult if you have to compile your application or driver, as I do with [vmware](http://www.vmware.com/ "VMWare") (the only way to run Windows) and my video card driver, but installing and updating a [Kubuntu](http://www.kubuntu.org/ "Kubuntu") system is not difficult and automatic most of the time.
 By the way, I don't have to use a compiled video card driver. I choose to because the proprietary Nvidia driver has built in support for [Beryl](http://www.beryl-project.org/ "Beryl"), a visually stunning set of enhancements to the GUI. While running Beryl with my Nvidia driver, the load on the system is less then not running Beryl, mainly because the graphics card handles the display and not the main CPU.
-Anyway, to install software, all you have to do is go **K Menu -> System** **-> Adept Manager**. It's at the top.[![Adept Manager Menu](http://jacob.steelsmith.org/files/from-old-blog/2007/06/menu.jpg)](http://jacob.steelsmith.org/files/from-old-blog/2007/06/menu.jpg "Adept Manager Menu")
+Anyway, to install software, all you have to do is go **K Menu -> System** **-> Adept Manager**. It's at the top.![Adept Manager Menu](/files/from-old-blog/2007/06/menu.jpg)
 After entering your password (because you never run as an administrator, or root as it's known in Linux, unlike Windows, to prevent damaging changes to the system), you are presented with a screen similar to this:
-[![Adept Package Manager](http://jacob.steelsmith.org/files/from-old-blog/2007/06/adept.jpg)](http://jacob.steelsmith.org/files/from-old-blog/2007/06/adept.jpg "Adept Package Manager")
+![Adept Package Manager](/files/from-old-blog/2007/06/adept.jpg)
 To look for a program, or package as their called, start typing in the search box at the top. I'm going to search for chess.
-[![Chess](http://jacob.steelsmith.org/files/from-old-blog/2007/06/chess.jpg)](http://jacob.steelsmith.org/files/from-old-blog/2007/06/chess.jpg "Chess")
+![Chess](/files/from-old-blog/2007/06/chess.jpg)
 To install the program you want, click on the > next to it. You'll see a button that says request install, along with a description of the package. Once you click request install, it will check for conflicting packages, and if they are found, it will not let you, but that rarely happens. Once the requested column says install, click apply changes at the top and it will download and install your software. 99% of the time, you will not have to reboot Linux (one advantage of a properly implemented operating system).
 By the way, you'll notice that I have 21,000+ packages available. This will vary depending on which repositories or sources you have enabled.
 Once you install the software, it will either appear in your menu or you will be able to access it via a command line.
