@@ -4,6 +4,7 @@ date: 2008-09-10
 ---
 
 I needed to remove files from quite a few sub-directories in a directory, but couldn't remove the sub-directories. The attached script does just that.
+
 You should run the script as root, or use sudo, but you don't have to. Here is the meat of the script:
 
 ```

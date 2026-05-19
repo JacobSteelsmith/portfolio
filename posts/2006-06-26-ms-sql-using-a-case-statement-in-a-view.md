@@ -4,6 +4,7 @@ date: 2006-06-26
 ---
 
 Here is a neat trick for using conditional processing in a view.
+
 I needed to create a view that contained an employee id and employee name amongst other data. The original view included two joins, but for the sake of simplicity, I have altered the view. This view uses a case statement to determine which "full name" to show, the full name using the first name or the full name using the nickname if the employee has one.
 
 ```

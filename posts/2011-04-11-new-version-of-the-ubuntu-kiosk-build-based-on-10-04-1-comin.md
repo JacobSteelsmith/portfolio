@@ -4,4 +4,5 @@ date: 2011-04-11
 ---
 
 Alex and I have been working on this for some time and will be releasing it soon.
+
 \*UPDATE: It's here: http://jacob.steelsmith.org/content/ubuntu-kiosk-based-10041
