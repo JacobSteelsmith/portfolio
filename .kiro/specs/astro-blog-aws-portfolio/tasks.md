@@ -168,8 +168,8 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
   - Verify `npm run build` completes successfully with all 184 posts processed
   - Verify responsive layout at 320px, 768px, 1200px, 2560px viewports
 
-- [ ] 8. Deploy Phase 1 via AWS Amplify
-  - [ ] 8.1 Configure AWS Amplify hosting
+- [x] 8. Deploy Phase 1 via AWS Amplify
+  - [x] 8.1 Configure AWS Amplify hosting
     - Create `amplify.yml` build spec with Node.js setup, `npm ci`, `npm run build`, output directory `dist/`
     - Connect GitHub repository (`JacobSteelsmith/portfolio`) main branch to Amplify
     - Configure custom domain `jacob.steelsmith.org` using existing Route 53 hosted zone
