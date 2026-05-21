@@ -228,13 +228,13 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
   - Verify GitHub Actions workflow syntax is valid
 
 - [ ] 13. Implement Knowledge Base and ingestion pipeline (Phase 3)
-  - [~] 13.1 Create Knowledge Base directory structure and content files
+  - [ ] 13.1 Create Knowledge Base directory structure and content files
     - Create `knowledge-base/` directory with subdirectories: skills/, experience/, projects/, certifications/, code-samples/
     - Create initial content files with YAML metadata headers (source_type, category, language, project)
     - Include at least one code sample per claimed language/framework
     - _Requirements: 19.1, 19.2, 19.3, 19.4, 19.6_
 
-  - [~] 13.2 Implement ingestion pipeline with content filtering
+  - [ ] 13.2 Implement ingestion pipeline with content filtering
     - Create `infrastructure/ingestion/` directory with pipeline scripts
     - Implement chunking logic: 500–1000 tokens per chunk, 50–100 token overlap
     - Implement pre-ingestion content filter excluding chunks containing "National Testing Network", "NTN", "Ergometrics", or encryption key patterns
@@ -254,7 +254,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - **Validates: Requirements 20.10, 21.8**
 
 - [ ] 14. Implement RAG Agent Lambda and API (Phase 3)
-  - [~] 14.1 Implement RAG Agent Lambda function
+  - [ ] 14.1 Implement RAG Agent Lambda function
     - Create `infrastructure/lambda/rag-agent/index.ts` with handler
     - Implement semantic search: retrieve top 5 chunks from Vector Database
     - Implement relevance threshold filtering (discard below-threshold chunks)
@@ -278,7 +278,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - **Property 19: Chat input length validation**
     - **Validates: Requirements 22.2, 23.6**
 
-  - [~] 14.5 Define RAG infrastructure in CloudFormation
+  - [ ] 14.5 Define RAG infrastructure in CloudFormation
     - Add API Gateway endpoint (`POST /chat`) with rate limiting (100 req/min global, 10 req/min per IP)
     - Add Lambda function resource with Bedrock permissions
     - Add request validation (question ≤ 500 characters)
@@ -286,7 +286,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - _Requirements: 23.1, 23.2, 23.3, 23.4, 23.5, 23.6_
 
 - [ ] 15. Implement Chat Widget frontend (Phase 3)
-  - [~] 15.1 Create Chat Widget component
+  - [ ] 15.1 Create Chat Widget component
     - Create `src/components/ChatWidget.astro` with collapsible overlay and persistent trigger button
     - Implement client-side JavaScript for state management (open/closed, messages, loading, error)
     - Implement message input with 500-character limit and validation
@@ -303,7 +303,7 @@ This plan implements a three-phase professional portfolio site: Phase 1 gets the
     - **Property 20: Chat session persistence**
     - **Validates: Requirements 22.7**
 
-- [~] 16. Final checkpoint - Full integration verification
+- [ ] 16. Final checkpoint - Full integration verification
   - Ensure all tests pass, ask the user if questions arise.
   - Verify full site build with all 184 posts succeeds
   - Verify all internal links resolve within build output
