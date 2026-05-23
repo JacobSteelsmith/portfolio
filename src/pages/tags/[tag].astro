@@ -51,7 +51,7 @@ function formatDate(date: Date): string {
       <li class="post-entry">
         <article>
           <h2>
-            <a href={`/blog/${getSlug(post)}`}>{post.data.title}</a>
+            <a href={`/posts/${getSlug(post)}`}>{post.data.title}</a>
           </h2>
           <time datetime={post.data.date.toISOString().split('T')[0]}>
             {formatDate(post.data.date)}
