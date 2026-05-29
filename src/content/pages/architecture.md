@@ -59,7 +59,7 @@ The resume site uses Terraform to manage all infrastructure as code, demonstrati
 ### RAG Chatbot
 
 - **Knowledge Base**: Amazon Bedrock with Titan Text Embeddings V2 (1024 dimensions)
-- **Vector Store**: OpenSearch Serverless (AOSS) with HNSW/faiss index
+- **Vector Store**: S3 Vectors
 - **Generation**: Claude Haiku 4.5 via cross-region inference profile
 - **API**: API Gateway (REST) → Lambda → Bedrock RetrieveAndGenerate
 - **Rate Limiting**: WAF (10 req/min per-IP) + API Gateway usage plan (100 req/min global)
