@@ -11,6 +11,28 @@ S3 Vectors launched as a purpose-built vector storage option within S3 itself. I
 
 The cost difference is dramatic. OpenSearch Serverless has a minimum collection cost regardless of usage. S3 Vectors is pure pay-per-use with no minimum.
 
+## Tradeoffs
+
+S3 Vectors is not a search engine. Moving from OpenSearch Serverless means giving up capabilities that a dedicated search engine provides. Here's what you lose:
+
+**No hybrid search blending.** S3 Vectors cannot natively execute or merge a BM25 keyword search with a vector similarity search. With OpenSearch Serverless, you can combine precise keyword terms with conceptual meaning in a single query — boosting results that match exact phrases while still surfacing semantically related content. With S3 Vectors, you get vector similarity in and ranked results out.
+
+**No complex text analytics or aggregations.** You can't group, bucket, or aggregate search results. Complex filtering like geolocation radius queries or deeply nested boolean conditions aren't available natively. The filterable metadata you do get is limited to simple key-value matching.
+
+**Higher latency, lower throughput.** S3 Vectors is optimized for durable, cost-effective storage — not for consumer-facing applications demanding massive queries per second and single-digit millisecond latency. You get sub-second response times, not the millisecond-level performance of an in-memory search engine.
+
+**Result volume limits.** S3 Vectors returns a maximum of 100 nearest neighbors per query, which limits deeper re-ranking workflows or applications that need to scan large result sets.
+
+**Filterable metadata budget.** As I'll cover below, S3 Vectors has a hard 2 KB limit on filterable metadata per vector. I had to mark both `AMAZON_BEDROCK_TEXT` and `AMAZON_BEDROCK_METADATA` as non-filterable to stay within that budget, which means I can't filter query results by document attributes at query time.
+
+### Why these tradeoffs are fine for my use case
+
+Every query to my resume chatbot is a natural language question like "what experience does Jacob have with Kubernetes?" and pure semantic search handles this well. I'm not relating documents by metadata like date or location, I'm not doing keyword or faceted searches, and I don't need to aggregate results. The knowledge base has a few hundred chunks total, well under the 100-result limit per query.
+
+The latency tradeoff is irrelevant when the response is already gated by an LLM generating a multi-paragraph answer. And with a small, single-purpose knowledge base, there's no scenario where I'd want to filter searches to subsets of documents or run complex boolean queries.
+
+If this were a multi-tenant application, a product catalog with faceted navigation, or a high-QPS consumer search experience, S3 Vectors would be the wrong choice. For a personal RAG chatbot with infrequent queries and a small corpus, it's the right tool at the right price.
+
 ## The Terraform Migration
 
 The migration involved replacing several resources in my `chatbot.tf`:
