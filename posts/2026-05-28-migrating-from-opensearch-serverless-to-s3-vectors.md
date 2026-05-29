@@ -7,7 +7,7 @@ OpenSearch Serverless was costing around $700/month just to run a vector search 
 
 ## Why S3 Vectors
 
-S3 Vectors launched as a purpose-built vector storage option within S3 itself. It supports up to 2 billion vectors per index with sub-second query latency. For my use case — a resume knowledge base with maybe a few hundred chunks — it's a perfect fit. The tradeoff is latency (sub-second vs millisecond), which is completely acceptable for a chatbot that's already waiting on an LLM to generate a response.
+S3 Vectors launched as a purpose-built vector storage option within S3 itself. It supports up to 2 billion vectors per index with sub-second query latency. For my use case — a resume knowledge base with maybe a few hundred chunks — it's a perfect fit. The tradeoff is latency (sub-second vs millisecond) and advanced search capability, which is completely acceptable for a simple chatbot that's already waiting on an LLM to generate a response.
 
 The cost difference is dramatic. OpenSearch Serverless has a minimum collection cost regardless of usage. S3 Vectors is pure pay-per-use with no minimum.
 
@@ -32,6 +32,8 @@ Every query to my resume chatbot is a natural language question like "what exper
 The latency tradeoff is irrelevant when the response is already gated by an LLM generating a multi-paragraph answer. And with a small, single-purpose knowledge base, there's no scenario where I'd want to filter searches to subsets of documents or run complex boolean queries.
 
 If this were a multi-tenant application, a product catalog with faceted navigation, or a high-QPS consumer search experience, S3 Vectors would be the wrong choice. For a personal RAG chatbot with infrequent queries and a small corpus, it's the right tool at the right price.
+
+Note: Using the AWS console, vectors can be exported to OpenSearch gaining back the advanced functionality and performance. 
 
 ## The Terraform Migration
 
