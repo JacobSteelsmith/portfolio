@@ -79,9 +79,8 @@ The resume site uses Terraform to manage all infrastructure as code, demonstrati
 
 All resources are managed in a single Terraform root module:
 
-- **AWS resources**: S3, CloudFront, ACM, Route 53, API Gateway, Lambda, WAF, Bedrock Knowledge Base, OpenSearch Serverless, IAM roles/policies
+- **AWS resources**: S3, S3 Vectors, CloudFront, ACM, Route 53, API Gateway, Lambda, WAF, Bedrock Knowledge Base, IAM roles/policies
 - **GitHub resources**: OIDC provider, branch protection, Actions secrets and environment variables
-- **OpenSearch resources**: Vector index (via `opensearch-project/opensearch` provider)
 - **State**: S3 backend with lock file
 
 ### Design Decisions
@@ -91,7 +90,7 @@ All resources are managed in a single Terraform root module:
 | IaC tool | Terraform | Single state file, unified workflow, declarative |
 | Hosting | S3 + CloudFront | Full control, global CDN, cost-effective |
 | Auth | OIDC (no stored keys) | Short-lived credentials, no secret rotation |
-| Vector store | OpenSearch Serverless | Managed scaling, Bedrock-native integration |
+| Vector store | S3 Vectors | Cost, Bedrock-native integration |
 | Rate limiting | WAF + API Gateway | Per-IP via WAF, global via usage plans |
 | Model access | Inference profile | Cross-region routing, future-proof |
 
