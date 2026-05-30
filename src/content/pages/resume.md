@@ -19,7 +19,7 @@ Proven track record delivering high-volume transactional systems, real-time plat
 
 ### AI & AI-Assisted Engineering
 
-- AI-assisted SDLC workflows, Agentic AI development (Kiro), MCP Servers, Retrieval-Augmented Generation (RAG), Amazon Bedrock, Prompt engineering, AI-driven test generation, AI-assisted infrastructure automation, Knowledge ingestion pipelines, Vector databases & semantic search
+- AI-assisted SDLC workflows, AI Assisted Engineering Workflows, MCP Servers, Retrieval-Augmented Generation (RAG), Amazon Bedrock, Prompt engineering, AI-driven test generation, AI-assisted infrastructure automation, Knowledge ingestion pipelines, Vector databases & semantic search
 
 ### Backend & APIs
 
