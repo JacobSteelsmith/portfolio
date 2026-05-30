@@ -15,37 +15,44 @@ Proven track record delivering high-volume transactional systems, real-time plat
 
 ### Languages
 
-- JavaScript, Bash, Python, SQL, CFML, PHP
+- Python, JavaScript / TypeScript, SQL, Bash, CFML / Lucee, PHP, Node.js
+
+### AI & AI-Assisted Engineering
+
+- AI-assisted SDLC workflows, Agentic AI development (Kiro), MCP Servers, Retrieval-Augmented Generation (RAG), Amazon Bedrock, Prompt engineering, AI-driven test generation, AI-assisted infrastructure automation, Knowledge ingestion pipelines, Vector databases & semantic search
 
 ### Backend & APIs
 
-- REST APIs, backend services, data modeling, transactional systems
-
-### AI & Automation
-
-- Agentic AI Development (Kiro), MCP Servers, RAG (Amazon Bedrock)
+- REST APIs, Serverless backend development, API Gateway design, Distributed backend services, Event-driven systems, Data modeling, Transactional systems, Authentication & authorization, Real-time communication systems
 
 ### Frontend
 
-- React, modern JavaScript frameworks
+- React, Modern JavaScript frameworks, Component-driven UI development, Responsive web applications
 
 ### Cloud & Infrastructure
 
-- AWS (Lambda, API Gateway, Cognito, RDS, S3, CloudWatch, CloudFormation, Glue, Redshift, EKS, Kinesis, Amplify)
-- Serverless architecture, Kubernetes
+- AWS (Lambda, API Gateway, Cognito, RDS, S3, CloudWatch, CloudFormation, Glue, Redshift, Athena, EKS, Kinesis, Amplify, IAM)
+- Serverless architecture, Infrastructure as Code (IaC), Kubernetes, Helm, Elastic Beanstalk
 
-### Systems
+### Systems & Architecture
 
-- Distributed systems, event-driven architecture, real-time streaming
+- Distributed systems, Event-driven architecture, Real-time streaming platforms, Cloud-native application design, High-availability systems, Observability & monitoring, Scalability & reliability engineering, Performance optimization
 
-### Databases
+### Data & Databases
 
-- MySQL, SQL Server, DynamoDB, Redshift, schema design, DBMS management
+- MySQL, SQL Server, DynamoDB, Amazon Redshift, Schema design, DBMS administration, Data lakehouse architectures, Apache Iceberg, ETL pipelines, Data warehousing
 
-### Tools & Practices
+### DevOps & Testing
 
-- Git, CI/CD pipelines, Playwright, pytest
-- Hiring, mentoring, performance management, delivery ownership
+- Git, CI/CD pipelines, GitHub Actions, Playwright, pytest, Production debugging, Monitoring & alerting, Incident response
+
+### Security & Compliance
+
+- PCI compliance, IAM least-privilege design, Encryption & secure system design, Identity management, Entra ID / Azure AD, Google Workspace administration
+
+### Leadership
+
+- Technical leadership, Hiring & team building, Mentoring & coaching, Performance management, Cross-functional collaboration, Delivery ownership, Engineering standards & processes, Roadmap planning, Budget & vendor management, Incident management
 
 ## Professional Experience
 
