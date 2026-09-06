@@ -19,7 +19,7 @@ Proven track record delivering high-volume transactional systems, real-time plat
 
 ### AI & AI-Assisted Engineering
 
-- AI-assisted SDLC workflows, AI Assisted Engineering Workflows, MCP Servers, Retrieval-Augmented Generation (RAG), Amazon Bedrock, Prompt engineering, AI-driven test generation, AI-assisted infrastructure automation, Knowledge ingestion pipelines, Vector databases & semantic search
+- AI-assisted SDLC workflows, AI Assisted Engineering Workflows, MCP Servers, Retrieval-Augmented Generation (RAG), Amazon Bedrock, Amazon Bedrock AgentCore (Runtime, Harness, Memory, Identity, Gateway, Observability), Agentic AI systems & agent harness implementation, Enterprise agent integrations (Confluence knowledge source, Microsoft Teams delivery), Prompt engineering, AI-driven test generation, AI-assisted infrastructure automation, Knowledge ingestion pipelines, Vector databases & semantic search
 
 ### Backend & APIs
 
@@ -31,7 +31,7 @@ Proven track record delivering high-volume transactional systems, real-time plat
 
 ### Cloud & Infrastructure
 
-- AWS (Lambda, API Gateway, Cognito, RDS, S3, CloudWatch, CloudFormation, Glue, Redshift, Athena, EKS, Kinesis, Amplify, IAM)
+- AWS (Lambda, API Gateway, Cognito, RDS, S3, CloudWatch, CloudFormation, Glue, Redshift, Athena, EKS, Kinesis, Amplify, IAM, ElastiCache/Valkey, DynamoDB)
 - Serverless architecture, Infrastructure as Code (IaC), Kubernetes, Helm, Elastic Beanstalk
 
 ### Systems & Architecture
@@ -45,6 +45,14 @@ Proven track record delivering high-volume transactional systems, real-time plat
 ### DevOps & Testing
 
 - Git, CI/CD pipelines, GitHub Actions, Playwright, pytest, Production debugging, Monitoring & alerting, Incident response
+
+### Observability & Monitoring
+
+- Grafana (dashboard design, unified alerting, notification policies), Amazon CloudWatch (metrics, dashboards, traces), Multi-channel alerting (chat/ops, email, on-call paging), Data store monitoring (DynamoDB, ElastiCache/Valkey, Redshift, RDS), Severity- and ownership-based alert routing
+
+### Collaboration & Enterprise Integrations
+
+- Confluence (REST API, CQL) as an AI knowledge source, Microsoft Teams bots (Bot Framework), Microsoft Graph API, OAuth2 authorization & token vaulting
 
 ### Security & Compliance
 

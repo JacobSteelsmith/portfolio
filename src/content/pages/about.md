@@ -18,10 +18,10 @@ I enjoy solving complex technical problems, simplifying operational overhead, an
 - **Cloud Platform Engineering**, Designing, building, and operating production AWS environments with a strong focus on scalability, reliability, and operational simplicity.
 - **AWS Modernization**, Leading migrations from legacy and monolithic systems to cloud-native architectures using serverless, managed services, and modern engineering practices.
 - **Serverless & Distributed Systems**, Building event-driven systems and APIs using AWS Lambda, API Gateway, Step Functions, EventBridge, SQS, and distributed cloud-native patterns.
-- **AI-Assisted Engineering**, Implementing AI-assisted development workflows, agentic tooling, structured knowledge systems, and retrieval-based AI solutions to improve engineering velocity and operational insight.
+- **AI-Assisted Engineering**, Implementing AI-assisted development workflows, agentic tooling, structured knowledge systems, and retrieval-based AI solutions to improve engineering velocity and operational insight. Building production agentic AI on Amazon Bedrock AgentCore, including agent harness implementation, with Confluence as a knowledge source and Microsoft Teams as a delivery channel.
 - **Infrastructure as Code**, Managing reproducible, version-controlled infrastructure using CloudFormation, SAM, Terraform, and modern deployment pipelines.
 - **CI/CD & DevOps**, Building automated deployment workflows with GitHub Actions, AWS-native tooling, automated testing, and continuous delivery practices.
-- **Observability & Reliability**, Designing observable systems using CloudWatch, structured logging, dashboards, alerting, tracing, and operational monitoring to improve system reliability and incident response.
+- **Observability & Reliability**, Designing observable systems using Grafana and CloudWatch, structured logging, dashboards, multi-channel alerting, tracing, and operational monitoring across data stores (DynamoDB, ElastiCache/Valkey, Redshift, RDS) to improve system reliability and incident response.
 - **Security & Compliance**, Implementing secure cloud architectures with IAM least privilege, encryption, identity federation, and operational controls supporting compliance and data protection requirements.
 - **Technical Leadership**, Leading engineering initiatives, mentoring teams, driving architectural decisions, and bridging the gap between business needs and practical technical execution.
 
